@@ -2,6 +2,7 @@
 
 ### [Docker Document](https://docs.docker.com)
 ### [Docker Hub](https://hub.docker.com)
+### [Docker Cheat Sheet](https://github.com/wsargent/docker-cheat-sheet)
 
 
 -- INDEX --<a name = "index"></a>
@@ -66,11 +67,34 @@ ex)
 docker run -i -t continuumio/anaconda3 /bin/bash
 --> anaconda3의 이미지로 컨테이너를 생성해서 bash로 접속합니다. 
 ```
+Foreground 옵션
++ -t              : Allocate a pseudo-tty, 터미널을 사용
++ -i              : Keep STDIN open even if not attached, 표준 입력을 넣음
+
+<docker에 접속 한 뒤에>
+```
+$ ls
+se) root@32b16a415be8:/# ls
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+
+```
 
 + Note
-+ 옵션들
     + 별도의 옵션이 없다면 컨테이너 exit 시, 컨테이너는 소멸합니다.
-    + 별도의 옵션이 업다면 컨테이너 exit 시, 컨테이너의 데이터는 보존되지 
+    + 별도의 옵션이 업다면 컨테이너 exit 시, 컨테이너의 데이터는 보존되지 않습니다.
+
++ 실행중인 도커 확인
+
+```
+$ docker ps
+
+ONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS                  PORTS               NAMES
+32b16a415be8        continuumio/anaconda3   "/usr/bin/tini -- /b…"   2 seconds ago       Up Less than a second                       youthful_pascal
+
+```
+
++ 옵션들
 
 + 볼륨
 컨테이너에서의 작업기록을 남기기 위해서 볼륨을 설정해야합니다.
