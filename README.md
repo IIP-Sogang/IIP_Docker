@@ -44,6 +44,17 @@ docker pull continuumio/anaconda3:latest
 docker pull continuumio/anaconda3:5.0.0p0
 ```
 
++ 이미지 확인
+
+```
+$ docker images
+
+EPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+continuumio/anaconda3   latest              cb34e4508fdc        5 weeks ago         3.72GB
+koobh/iip_demo_env      latest              b42211c6a9f9        2 months ago        1.27GB
+
+```
+
 * [anaconda3 도커 허브](https://hub.docker.com/r/continuumio/anaconda3)
 
 
@@ -58,6 +69,8 @@ docker run -i -t continuumio/anaconda3 /bin/bash
 
 + Note
 + 옵션들
+    + 별도의 옵션이 없다면 컨테이너 exit 시, 컨테이너는 소멸합니다.
+    + 별도의 옵션이 업다면 컨테이너 exit 시, 컨테이너의 데이터는 보존되지 
 
 + 볼륨
 컨테이너에서의 작업기록을 남기기 위해서 볼륨을 설정해야합니다.
