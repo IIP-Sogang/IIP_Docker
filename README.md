@@ -1,5 +1,9 @@
 # IIP_Docker
 
+### [Docker Document](https://docs.docker.com)
+### [Docker Hub](https://hub.docker.com)
+
+
 -- INDEX --<a name = "index"></a>
 
 + [설치](#install)
@@ -15,25 +19,50 @@
 추가 설치한 컨테이너를 이미지로 만들기  
 배포    
 
+volume 사용하기 
+
 Dockerfile 사용하기  
 
-matlab 라이센스 문제를 고려한 사용. - matlab Runtime 이미지가 있는 걸 보니까 '사용' 자체만 하는 건 될 거 같다,
+matlab 라이센스 문제를 고려한 사용, matlab Runtime 이미지가 있는 걸 보니까 '사용' 자체만 하는 건 될 거 같다.  
+이건 matlab의 작동 방식을 좀 알아봐야할듯. executable 을 빌드 할 수 있는 걸로 알고 있는데.  
 
 ## [설치](#index)<a name = "install"></a>
 
-+ 이미지 받기
-```
-docker pull <소유자>/<이미지 이름>:<버전>
-ex) docker pull rikorose/gcc-cmake:latest
++ 도커 설치
 
 ```
+sudo apt-get install docker
+```
+
++ 이미지 받기
+
+```
+docker pull <소유자>/<이미지 이름>[:<버전 | default = latest>]
+ex) 
+docker pull continuumio/anaconda3
+docker pull continuumio/anaconda3:latest
+docker pull continuumio/anaconda3:5.0.0p0
+```
+
+* [anaconda3 도커 허브](https://hub.docker.com/r/continuumio/anaconda3)
+
 
 ## [사용](#index)<a name = "use"></a>
 
 ```
-docker run --name="iip_demo_env" -it rikorose/gcc-cmake:latest /bin/bash
+$ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+ex)
+docker run -i -t continuumio/anaconda3 /bin/bash
+--> anaconda3의 이미지로 컨테이너를 생성해서 bash로 접속합니다. 
 ```
 
++ Note
++ 옵션들
+
++ 볼륨
+컨테이너에서의 작업기록을 남기기 위해서 볼륨을 설정해야합니다.
+
++ [Docker Run Reference](https://docs.docker.com/engine/reference/run/)
 
 ## [수정](#index)<a name = "modify"></a>
 
