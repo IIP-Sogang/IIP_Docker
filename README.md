@@ -12,15 +12,16 @@
 + [수정](#modify)
 + [배포](#deploy)
 
-### TODO
+### Component
 
-
-이미지 받기  
-받은 이미지 컨테이너 돌리기  
-빈 이미지 만들기  
-컨테이너에 추가 설치하기   
-추가 설치한 컨테이너를 이미지로 만들기  
-배포    
++ anaconda
+    + 4.3.0
+    + [설치 파일 아카이브](https://repo.continuum.io/archive/)
++ matlab
+    + r2019a
+    + [matlab CLI install](https://gist.github.com/kahlos/97c9371f7a5476678ef11c836c97a14f)
+    
+일단 우분투 이미지 위에서 돌리자. 
 
 volume 사용하기 
 
