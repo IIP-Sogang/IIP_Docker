@@ -48,6 +48,13 @@ docker pull continuumio/anaconda3:latest
 docker pull continuumio/anaconda3:5.0.0p0
 ```
 
++ 이미지 파일에서 가져오기
+이미지를 저장한 tar 파일이 있다면
+
+```
+docker load -i <파일명> 
+```
+
 + 이미지 확인
 
 ```
