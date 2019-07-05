@@ -84,8 +84,7 @@ boot  etc  lib   media  opt  root  sbin  sys  usr
 ```
 
 + Note
-    + 별도의 옵션이 없다면 컨테이너 exit 시, 컨테이너는 소멸합니다.
-    + 별도의 옵션이 업다면 컨테이너 exit 시, 컨테이너의 데이터는 보존되지 않습니다.
+    + container 는 프로세스 입니다. 명령이 끝나면 종료됩니다.
 
 + 실행중인 도커 확인
 
@@ -99,8 +98,28 @@ ONTAINER ID        IMAGE                   COMMAND                  CREATED     
 
 + 옵션들
 
-+ 볼륨
-컨테이너에서의 작업기록을 남기기 위해서 볼륨을 설정해야합니다.
+### 이름
+컨테이너에 지정된 이름을 부여합니다. 명시되지 않으면 임의의 인물명을 사용합니다. 
+
+```
+docker run --name <원하는 이름> 
+ex) docker run -it --name my_contatiner_name iip:v4
+```
+
+### 볼륨
+
++ 호스트와 디렉토리를 공유합니다
++ 컨터이너의 출력물을 호스트에서 사용하거나 호스트의 파일을 도커에서 사용할 수 있습니다 .
+
+```
+docker run -v <host 디렉토리>:<contatiner 디렉토리> 
+ex) docker run -it $PWD/data:/home/iip/data/ iip:v4
+    docker run -it /home/git/IIP_Docker/data:/home/iip/data/ iip:v4
+```
+
+* note
+    + ```.``` 을 이용한 상대경로를 사용할 수 없습니다. ```$pwd```를 사용하십시오.
+ 
 
 + [Docker Run Reference](https://docs.docker.com/engine/reference/run/)
 
@@ -115,12 +134,23 @@ exit
 
 ## [배포](#index)<a name = "deploy"></a>
 
++ contatiner -> image
 
+```
+docker commit <컨테이너> <이미지명:태그 ex) iip:v2 >
+```
+
++ image -> tar file
+```
+docker save -o <파일명 ex) iip_v4.tar> <이미지>
+```
+
++ docker hub 에 업로드
 ```
 docker login
 ..
 ..
-docker commit iip_demo_env iip_demo_env
+
 docker tag iip_demo_env koobh/iip_demo_env
 docker push koobh/iip_demo_env
 ```
