@@ -34,6 +34,23 @@
 sudo apt-get install docker
 ```
 
++ user를 docker에 등록
+1. docker group 확인
+```
+cat /etc/group | grep docker 
+```
+
+1-1. docker group 이 없다면 만든다. 
+```
+sudo groupadd docker
+```
+
+2. user를 docker group 에 추가한다.
+```
+sudo usermod -aG docker $USER
+```
+
+
 + 이미지 받기 - 도커 허브에서
 
 ```
