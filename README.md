@@ -5,7 +5,7 @@
 ### [Docker Cheat Sheet](https://github.com/wsargent/docker-cheat-sheet)
 
 
--- INDEX --<a name = "index"></a>
+## INDEX <a name = "index"></a>
 
 + [설치](#install)
 + [사용](#use)
@@ -21,14 +21,10 @@
     + r2019a
     + [matlab CLI install](https://gist.github.com/kahlos/97c9371f7a5476678ef11c836c97a14f)
     
-일단 우분투 이미지 위에서 돌리자. 
 
-volume 사용하기 
-
-Dockerfile 사용하기  
-
-matlab 라이센스 문제를 고려한 사용, matlab Runtime 이미지가 있는 걸 보니까 '사용' 자체만 하는 건 될 거 같다.  
-이건 matlab의 작동 방식을 좀 알아봐야할듯. executable 을 빌드 할 수 있는 걸로 알고 있는데.  
+## Note
+    + matlab 은 command line 으로만 사용가능 합니다.
+    + matlab license 계정은 nine4409@sogang.ac.kr 입니다. 
 
 ## [설치](#index)<a name = "install"></a>
 
@@ -38,7 +34,7 @@ matlab 라이센스 문제를 고려한 사용, matlab Runtime 이미지가 있�
 sudo apt-get install docker
 ```
 
-+ 이미지 받기
++ 이미지 받기 - 도커 허브에서
 
 ```
 docker pull <소유자>/<이미지 이름>[:<버전 | default = latest>]
@@ -81,7 +77,8 @@ Foreground 옵션
 + -t              : Allocate a pseudo-tty, 터미널을 사용
 + -i              : Keep STDIN open even if not attached, 표준 입력을 넣음
 
-<docker에 접속 한 뒤에>
+<docker에 접속 한 뒤에>  
+root 계정으로 접속한것을 볼 수 있습니다. 
 ```
 $ ls
 se) root@32b16a415be8:/# ls
@@ -96,7 +93,7 @@ boot  etc  lib   media  opt  root  sbin  sys  usr
 + 실행중인 도커 확인
 
 ```
-$ docker ps
+$ docker ps -a
 
 ONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS                  PORTS               NAMES
 32b16a415be8        continuumio/anaconda3   "/usr/bin/tini -- /b…"   2 seconds ago       Up Less than a second                       youthful_pascal
@@ -125,7 +122,7 @@ ex) docker run -it $PWD/data:/home/iip/data/ iip:v4
 ```
 
 * note
-    + ```.``` 을 이용한 상대경로를 사용할 수 없습니다. ```$pwd```를 사용하십시오.
+    + ```.``` 을 이용한 상대경로를 사용할 수 없습니다. ```$PWD```를 사용하십시오.
  
 
 + [Docker Run Reference](https://docs.docker.com/engine/reference/run/)
@@ -138,6 +135,8 @@ apt-get update
 apt-get install libasound2-dev
 exit
 ```
+작프로세스 종료시 해당 상태가 ```exited``` 된 컨테이너로 저장됩니다. 
+
 
 ## [배포](#index)<a name = "deploy"></a>
 
