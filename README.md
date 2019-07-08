@@ -22,12 +22,13 @@
 + matlab
     + r2019a
     + [matlab CLI install](https://gist.github.com/kahlos/97c9371f7a5476678ef11c836c97a14f)
+    + CLI 설치는 file installation key와 matlab DVD 
 + cuda
 ```apt-get install -f cuda-9-0```
 
 ## Note
-    + matlab 은 command line 으로만 사용가능 합니다.
-    + matlab license 계정은 nine4409@sogang.ac.kr 입니다. 
++ matlab 은 command line 으로만 사용가능 합니다.
++ matlab license 계정은 nine4409@sogang.ac.kr 입니다. 
 
 ## [설치](#index)<a name = "install"></a>
 
@@ -208,21 +209,24 @@ docker build . -t iip:v7
 docker run --name working -v ${PWD}/data/:/home/data/ -it iip:v7 /bin/sh
 ```
 
-```run.sh``` 를 실행하면 ```mnt``` 폴더를 마운트하고 ```data```폴더를 공유하는 컨테이너가 생성되고,
+1. ```run.sh``` 를 실행하면 ```mnt``` 폴더를 마운트하고 ```data```폴더를 공유하는 컨테이너가 생성되고,
 해당 컨테이너의 터미널로 접속합니다. ```/bin/sh```
 
-작업을 수행합니다. 
+2. 작업을 수행합니다. 
 
-```exit```  합니다.
+3. ```exit```  합니다.
 
 컨터이너가 종료됩니다. 변동사항을 안에 담고있습니다. 다만 data 폴더의 사항은 호스트와 공유하는 것이기에 담고 있지 않습니다.   
 
-```docker ps -a ```를 하면 ```exited```된 컨테이너가 있습니다.  
+4. ```docker ps -a ```를 하면 ```exited```된 컨테이너가 있습니다.  
 
-```docker commit <extied 된 container 이름> <새로 만들 이미지 이름>```  
+5. ```docker commit <extied 된 container 이름> <새로 만들 이미지 이름>```  
 
 을 하면 해당 컨테이너를 이미지로 변환합니다.  
 
-```docker save -o <파일명.tar> <이미지 명>```  
+6. ```docker save -o <파일명.tar> <이미지 명>```  
 
 을 하면 해당 이미지를 tar 파일로 추출합니다.    
+
+7. ```docker load -i <파일명.tar>```   
+를 하면 해당 이미지를 가져옵니다. 
