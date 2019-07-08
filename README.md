@@ -11,6 +11,8 @@
 + [사용](#use)
 + [수정](#modify)
 + [배포](#deploy)
++ [예시](#example)
+
 
 ### Component
 
@@ -20,7 +22,8 @@
 + matlab
     + r2019a
     + [matlab CLI install](https://gist.github.com/kahlos/97c9371f7a5476678ef11c836c97a14f)
-    
++ cuda
+```apt-get install -f cuda-9-0```
 
 ## Note
     + matlab 은 command line 으로만 사용가능 합니다.
@@ -61,7 +64,7 @@ docker pull continuumio/anaconda3:latest
 docker pull continuumio/anaconda3:5.0.0p0
 ```
 
-+ 이미지 파일에서 가져오기
++ 이미지 파일에서 가져오기  
 이미지를 저장한 tar 파일이 있다면
 
 ```
@@ -155,7 +158,7 @@ exit
 작프로세스 종료시 해당 상태가 ```exited``` 된 컨테이너로 저장됩니다. 
 
 
-## [배포](#index)<a name = "deploy"></a>
+## [저장 및 배포](#index)<a name = "deploy"></a>
 
 + contatiner -> image
 
@@ -177,3 +180,49 @@ docker login
 docker tag iip_demo_env koobh/iip_demo_env
 docker push koobh/iip_demo_env
 ```
+
+## [예시](#index)<a name = "example"></a>
+
+```Dockerfile``` 과 ```run.sh``` 를 사용합니다. 
+
+```Dockerfile
+# iip:v7 이미지를 기반으로 생성합니다.
+FROM iip:v7
+
+# 현재 폴더의 mnt 폴더를 docker container의 /mnt 폴더에 마운트합니다.
+# 마운트는 파일을 공유하지 않습니다.
+# ./mnt 의 내용을 /mnt에 올리는 행위입니다.
+# host 와 container 간 파일 공유는 run.sh 에서 이루어집니다.
+ADD ./mnt /mnt
+```
+
+```bash
+#! /bin/sh
+
+# 현재 폴더에서 Dockerfile 로 iip:v7 라는 이미지를 생성합니다. 
+docker build . -t iip:v7
+# iip:v6 이미지로 working 이라는 이름을 가진 컨테이너를 만듭니다.
+# 현재 폴더의 data 폴더를 docker conatiner의 /home/data 폴더와 공유합니다.
+# host와 docker container 양쪽에서 같은 파일을 조작할 수 있습니다.
+# 터미널로 /bin/sh를 실행합니다.
+docker run --name working -v ${PWD}/data/:/home/data/ -it iip:v7 /bin/sh
+```
+
+```run.sh``` 를 실행하면 ```mnt``` 폴더를 마운트하고 ```data```폴더를 공유하는 컨테이너가 생성되고,
+해당 컨테이너의 터미널로 접속합니다. ```/bin/sh```
+
+작업을 수행합니다. 
+
+```exit```  합니다.
+
+컨터이너가 종료됩니다. 변동사항을 안에 담고있습니다. 다만 data 폴더의 사항은 호스트와 공유하는 것이기에 담고 있지 않습니다.   
+
+```docker ps -a ```를 하면 ```exited```된 컨테이너가 있습니다.  
+
+```docker commit <extied 된 container 이름> <새로 만들 이미지 이름>```  
+
+을 하면 해당 컨테이너를 이미지로 변환합니다.  
+
+```docker save -o <파일명.tar> <이미지 명>```  
+
+을 하면 해당 이미지를 tar 파일로 추출합니다.    
