@@ -106,3 +106,8 @@ venv.bak/
 all_in_one/mnt
 mnt
 *.tar
+
+*.deb
+
+AI_python
+VAD_jaebin

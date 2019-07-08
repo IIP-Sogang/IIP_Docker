@@ -2,9 +2,9 @@
 FROM iip:v7
 
 #### X11 forwarding 용 구문 ####
-# RUN apt-get update
-# RUN apt-get install -qqy x11-apps
-# ENV DISPLAY :0
+ RUN apt-get update
+ RUN apt-get install -qqy x11-apps
+ ENV DISPLAY :0
 
 # 현재 폴더의 mnt 폴더를 docker container의 /mnt 폴더에 마운트합니다.
 # 마운트는 파일을 공유하지 않습니다.
