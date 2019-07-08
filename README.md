@@ -5,7 +5,7 @@
 ### [Docker Cheat Sheet](https://github.com/wsargent/docker-cheat-sheet)
 
 
--- INDEX --<a name = "index"></a>
+## INDEX <a name = "index"></a>
 
 + [설치](#install)
 + [사용](#use)
@@ -21,14 +21,10 @@
     + r2019a
     + [matlab CLI install](https://gist.github.com/kahlos/97c9371f7a5476678ef11c836c97a14f)
     
-일단 우분투 이미지 위에서 돌리자. 
 
-volume 사용하기 
-
-Dockerfile 사용하기  
-
-matlab 라이센스 문제를 고려한 사용, matlab Runtime 이미지가 있는 걸 보니까 '사용' 자체만 하는 건 될 거 같다.  
-이건 matlab의 작동 방식을 좀 알아봐야할듯. executable 을 빌드 할 수 있는 걸로 알고 있는데.  
+## Note
+    + matlab 은 command line 으로만 사용가능 합니다.
+    + matlab license 계정은 nine4409@sogang.ac.kr 입니다. 
 
 ## [설치](#index)<a name = "install"></a>
 
@@ -38,7 +34,24 @@ matlab 라이센스 문제를 고려한 사용, matlab Runtime 이미지가 있�
 sudo apt-get install docker
 ```
 
-+ 이미지 받기
++ user를 docker에 등록
+1. docker group 확인
+```
+cat /etc/group | grep docker 
+```
+
+1-1. docker group 이 없다면 만든다. 
+```
+sudo groupadd docker
+```
+
+2. user를 docker group 에 추가한다.
+```
+sudo usermod -aG docker $USER
+```
+
+
++ 이미지 받기 - 도커 허브에서
 
 ```
 docker pull <소유자>/<이미지 이름>[:<버전 | default = latest>]
@@ -46,6 +59,13 @@ ex)
 docker pull continuumio/anaconda3
 docker pull continuumio/anaconda3:latest
 docker pull continuumio/anaconda3:5.0.0p0
+```
+
++ 이미지 파일에서 가져오기
+이미지를 저장한 tar 파일이 있다면
+
+```
+docker load -i <파일명> 
 ```
 
 + 이미지 확인
@@ -74,7 +94,8 @@ Foreground 옵션
 + -t              : Allocate a pseudo-tty, 터미널을 사용
 + -i              : Keep STDIN open even if not attached, 표준 입력을 넣음
 
-<docker에 접속 한 뒤에>
+<docker에 접속 한 뒤에>  
+root 계정으로 접속한것을 볼 수 있습니다. 
 ```
 $ ls
 se) root@32b16a415be8:/# ls
@@ -84,13 +105,12 @@ boot  etc  lib   media  opt  root  sbin  sys  usr
 ```
 
 + Note
-    + 별도의 옵션이 없다면 컨테이너 exit 시, 컨테이너는 소멸합니다.
-    + 별도의 옵션이 업다면 컨테이너 exit 시, 컨테이너의 데이터는 보존되지 않습니다.
+    + container 는 프로세스 입니다. 명령이 끝나면 종료됩니다.
 
 + 실행중인 도커 확인
 
 ```
-$ docker ps
+$ docker ps -a
 
 ONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS                  PORTS               NAMES
 32b16a415be8        continuumio/anaconda3   "/usr/bin/tini -- /b…"   2 seconds ago       Up Less than a second                       youthful_pascal
@@ -99,8 +119,28 @@ ONTAINER ID        IMAGE                   COMMAND                  CREATED     
 
 + 옵션들
 
-+ 볼륨
-컨테이너에서의 작업기록을 남기기 위해서 볼륨을 설정해야합니다.
+### 이름
+컨테이너에 지정된 이름을 부여합니다. 명시되지 않으면 임의의 인물명을 사용합니다. 
+
+```
+docker run --name <원하는 이름> 
+ex) docker run -it --name my_contatiner_name iip:v4
+```
+
+### 볼륨
+
++ 호스트와 디렉토리를 공유합니다
++ 컨터이너의 출력물을 호스트에서 사용하거나 호스트의 파일을 도커에서 사용할 수 있습니다 .
+
+```
+docker run -v <host 디렉토리>:<contatiner 디렉토리> 
+ex) docker run -it $PWD/data:/home/iip/data/ iip:v4
+    docker run -it /home/git/IIP_Docker/data:/home/iip/data/ iip:v4
+```
+
+* note
+    + ```.``` 을 이용한 상대경로를 사용할 수 없습니다. ```$PWD```를 사용하십시오.
+ 
 
 + [Docker Run Reference](https://docs.docker.com/engine/reference/run/)
 
@@ -112,15 +152,28 @@ apt-get update
 apt-get install libasound2-dev
 exit
 ```
+작프로세스 종료시 해당 상태가 ```exited``` 된 컨테이너로 저장됩니다. 
+
 
 ## [배포](#index)<a name = "deploy"></a>
 
++ contatiner -> image
 
+```
+docker commit <컨테이너> <이미지명:태그 ex) iip:v2 >
+```
+
++ image -> tar file
+```
+docker save -o <파일명 ex) iip_v4.tar> <이미지>
+```
+
++ docker hub 에 업로드
 ```
 docker login
 ..
 ..
-docker commit iip_demo_env iip_demo_env
+
 docker tag iip_demo_env koobh/iip_demo_env
 docker push koobh/iip_demo_env
 ```

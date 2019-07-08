@@ -7,3 +7,4 @@
 
 docker build . -t iip:v6
 docker run --name working -v ${PWD}/data/:/home/data/ -it iip:v6 /bin/sh
+
