@@ -1,3 +1,6 @@
-Yes.
+Yes. But Host OS has ownership of this directory is.
+Thus, Every file in this directory won't be saved in docker. 
+If you want to pack files in this directory with current docker,
+move or copy files you want to pack into another directory in current docker.
 
 https://github.com/kooBH/IIP_Docker
