@@ -19,12 +19,13 @@ else
 # iip:v6 이미지로 working 이라는 이름을 가진 컨테이너를 만듭니다.
 # 현재 폴더의 data 폴더를 docker conatiner의 /home/data 폴더와 공유합니다.
 # host와 docker container 양쪽에서 같은 파일을 조작할 수 있습니다.
-# 터미널로 /bin/sh를 실행합니다.
+# * note * 공유 폴더의 데이터는 Host 소유이기 때문에 컨테이너에 저장되지 않습니다.
+# 컨테이너에 저장하려면 Docker 컨테이너 내부의 폴더에 복사하십시오. 
 
+
+# 터미널로 /bin/sh를 실행합니다.
 # docker run --name  $1 -v ${PWD}/iip/:/home/iip/ -it iip:v9 /bin/sh
 
- docker run --runtime=nvidia --name  $1 -v ${PWD}/iip/:/home/iip/ -it iip:v9 /bin/sh
-
-# docker run --runtime=nvidia --name  $1 nvidia/cuda  nvidia-smi
+docker run --runtime=nvidia --name  $1 -v ${PWD}/iip/:/home/iip/ -it iip:v10 /bin/sh
 
 fi
