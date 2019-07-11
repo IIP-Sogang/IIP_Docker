@@ -6,7 +6,6 @@
 # XSOCK=/tmp/.X11-unix
 # XAUTH=/tmp/.docker.xauth
 # xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
-# docker run -ti -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH iip:v4
 
 
 if [ $# -eq 0 ];then
@@ -27,5 +26,26 @@ else
 # docker run --name  $1 -v ${PWD}/iip/:/home/iip/ -it iip:v9 /bin/sh
 
 docker run --runtime=nvidia --name  $1 -v ${PWD}/iip/:/home/iip/ -it iip:v10 /bin/sh
+#docker run --runtime=nvidia --name  $1 -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH  -v ${PWD}/iip/:/home/iip/ -it iip:v10 /bin/sh
+#docker run -ti -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH iip:v10
 
 fi
+
+
+################################################
+# exited 된 container 를 Image 로 Commit 하기  #
+############################################################
+#                                                          #
+# $ docker commit <commit 할 컨테이너> <이미지이름:태그>   #
+# ex) docker commit my_cont my_img:v3                      #
+############################################################
+
+##################################
+# imagef 를 tar 파일로 추출하기  #
+############################################################
+#                                                          #
+# $ docker save -o <파일명> <추출할 이미지:태그>           #
+# ex) docker save -o <iip_v8.tar> <iip:v8>                 #
+############################################################
+
+
