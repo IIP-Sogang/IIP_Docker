@@ -22,12 +22,13 @@
 + matlab
     + r2019a
     + [matlab CLI install](https://gist.github.com/kahlos/97c9371f7a5476678ef11c836c97a14f)
-    + CLI 설치는 file installation key와 matlab DVD 
+    + CLI 설치는 file installation key와 matlab DVD 가 필요합니다.
+    + 계정으로 인증하려면 GUI를 사용해야하며 X11 forwarding을 사용해야합니다. 
 + cuda
 ```apt-get install -f cuda-9-0```
 
 ## Note
-+ matlab 은 command line 으로만 사용가능 합니다.
++ matlab 은 command line 으로만 사용가능 합니다.(인증단계까지는 GUI 가능)
 + matlab license 계정은 nine4409@sogang.ac.kr 입니다. 
 
 ## [설치](#index)<a name = "install"></a>
@@ -138,8 +139,8 @@ ex) docker run -it --name my_contatiner_name iip:v4
 
 ```
 docker run -v <host 디렉토리>:<contatiner 디렉토리> 
-ex) docker run -it $PWD/data:/home/iip/data/ iip:v4
-    docker run -it /home/git/IIP_Docker/data:/home/iip/data/ iip:v4
+ex) docker run -it -v $PWD/data:/home/iip/data/ iip:v4
+    docker run -it -v /home/git/IIP_Docker/data:/home/iip/data/ iip:v4
 ```
 
 * note
