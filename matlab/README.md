@@ -1,9 +1,18 @@
-# Docker에 Matlab을 설치하는DockerFile
-
+# Docker에 Matlab을 GUI 방식으로 설치하는 DockerFile
 
 2020-11-18 ubuntu20.04  
 
 build.sh 를 실행하면 된다. 2번 실행하면 된다.   
+  
+설치후에는 Matlab 사용시  
+```
+./matlab -nodisplay -nosplash -nodesktop -r <스크립트명>
+```
+.m 없이 사용한다.  
+ex) run.m 실행 시  
+```
+./matlab -nodisplay -nosplash -nodesktop -r run
+```
 
 맨 마지막에 언급하였으나 Matlab 설치 파일의 install 실행 시 
 ```
@@ -17,6 +26,7 @@ Aborted (core dumped)
 아래와 같은 문제가 발생하였으나 2번 실행해서 해결되었다.   
 의존성이 있는 명령어의 순서 문제 같다. 하지만 설치에 성공하였기 때문에   
 자세한 분석 및 해결을 하지 않았다.   
+
 
 ```
 Step 5/9 : RUN apt-get install -qqy lsb-release
