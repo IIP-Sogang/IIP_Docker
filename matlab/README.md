@@ -6,12 +6,12 @@ build.sh 를 실행하면 된다. 2번 실행하면 된다.
   
 설치후에는 Matlab 사용시  
 ```
-./matlab -nodisplay -nosplash -nodesktop -r <스크립트명>
+matlab -nodisplay -nosplash -nodesktop -r <스크립트명>
 ```
 .m 없이 사용한다.  
 ex) run.m 실행 시  
 ```
-./matlab -nodisplay -nosplash -nodesktop -r run
+matlab -nodisplay -nosplash -nodesktop -r run
 ```
 
 맨 마지막에 언급하였으나 Matlab 설치 파일의 install 실행 시 
