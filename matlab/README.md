@@ -5,7 +5,7 @@
 
 build.sh 를 실행하면 된다. 2번 실행하면 된다.   
 
-맨 마지막에 언급하였으나
+맨 마지막에 언급하였으나 Matlab 설치 파일의 install 실행 시 
 ```
 terminate called after throwing an instance of 'std::runtime_error'
   what():  Unable to launch the MATLABWindow application
