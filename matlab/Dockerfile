@@ -5,7 +5,7 @@ FROM ahstarwab/pytorch18_cuda11
 #### X11 forwarding  ####
 RUN apt-get update
 RUN apt-get install -qqy x11-apps
-ENV DISPLAY :0
+#ENV DISPLAY :0
 
 ### Dependency
 RUN apt-get install -qqy lsb-release
