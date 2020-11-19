@@ -20,11 +20,7 @@ apt-get install gcc-4.9
 apt-get upgrade libstdc++6  
   
 
-
-apt-get update  
-apt-get install python3-pip  
 # install python3.8   
-
 add-apt-repository ppa:deadsnakes/ppa  
 apt update  
 apt install python3.8  
