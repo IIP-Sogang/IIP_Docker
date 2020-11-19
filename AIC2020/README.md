@@ -29,7 +29,7 @@ add-apt-repository ppa:deadsnakes/ppa
 apt update  
 apt install python3.8  
 apt install python3-pip  
-ln -s <python3.8> <python>  
-ln -s <python3.8> <python3>   
+ln -s python3.8 python 
+ln -s python3.8 python3   
 
 
