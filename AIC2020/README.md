@@ -1,3 +1,6 @@
++ [AIC2020 제출루틴 링크](https://github.com/kooBH/IIP_Docker/issues/11)
+
+---
 
 sudo apt-get install nvidia-docker2  
 docker pull nivida/cuda:10.1-cudnn7-runtime-ubuntu16.04  
