@@ -72,10 +72,14 @@ cat /etc/group | grep docker
 sudo groupadd docker
 ```
 
-2. user를 docker group 에 추가한다.
+2. user를 docker group 에 추가한 뒤 docker 재시작. 
 ```
 sudo usermod -aG docker $USER
+sudo service docker restart
 ```
+
+## NOTE
+docker service 재시작 해도 권한이 바로 적용되지 않는다. 재부팅 없이권한을 적용 하는 방법을 찾아보자
 
 
 + 이미지 받기 - 도커 허브에서
