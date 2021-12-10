@@ -78,6 +78,8 @@ sudo usermod -aG docker $USER
 sudo service docker restart
 ```
 
+restart 해도 permission 요구할 경우 reboot  
+
 ## NOTE
 docker service 재시작 해도 권한이 바로 적용되지 않는다. 재부팅 없이권한을 적용 하는 방법을 찾아보자
 
