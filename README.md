@@ -211,6 +211,11 @@ docker tag iip_demo_env koobh/iip_demo_env
 docker push koobh/iip_demo_env
 ```
 
+## [이어하기](#index)<a name = "start"></a>  
+```
+docker start <ID or name> <-i>
+```
+
 ## [예시](#index)<a name = "example"></a>
 
 ```Dockerfile``` 과 ```run.sh``` 를 사용합니다. 
