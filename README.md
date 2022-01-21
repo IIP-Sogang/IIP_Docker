@@ -123,7 +123,19 @@ ex)
 docker run -i -t continuumio/anaconda3 /bin/bash
 --> anaconda3의 이미지로 컨테이너를 생성해서 bash로 접속합니다. 
 
+```
+
 + gpu 사용
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker  
+```
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+   
+   sudo apt-get update
+   sudo apt-get install -y nvidia-docker2
+   sudo systemctl restart docker
+
 docker run --gpus all -i -t <콘테이너> /bin/bash
 ```
 Foreground 옵션
