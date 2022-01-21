@@ -122,6 +122,9 @@ $ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
 ex)
 docker run -i -t continuumio/anaconda3 /bin/bash
 --> anaconda3의 이미지로 컨테이너를 생성해서 bash로 접속합니다. 
+
++ gpu 사용
+docker run --gpus all -i -t <콘테이너> /bin/bash
 ```
 Foreground 옵션
 + -t              : Allocate a pseudo-tty, 터미널을 사용
